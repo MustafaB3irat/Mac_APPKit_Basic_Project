@@ -28,12 +28,12 @@
                         <nil key="textColor"/>
                         <nil key="highlightedColor"/>
                     </label>
-                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="greaterthan" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="vBM-vf-67M">
-                        <rect key="frame" x="285" y="27.5" width="25" height="18.5"/>
+                    <imageView clipsSubviews="YES" userInteractionEnabled="NO" alpha="0.55000000000000004" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="greaterthan" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="vBM-vf-67M">
+                        <rect key="frame" x="285" y="22.5" width="25" height="28.5"/>
                         <color key="tintColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
                             <constraint firstAttribute="width" constant="25" id="5mz-Il-gP2"/>
-                            <constraint firstAttribute="height" constant="25" id="Kw6-Vs-DMz"/>
+                            <constraint firstAttribute="height" constant="35" id="Kw6-Vs-DMz"/>
                         </constraints>
                     </imageView>
                 </subviews>
