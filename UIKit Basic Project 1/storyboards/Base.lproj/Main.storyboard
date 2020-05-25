@@ -24,10 +24,10 @@
             </objects>
             <point key="canvasLocation" x="-639" y="-184"/>
         </scene>
-        <!--PhotosGallery-->
+        <!--PhotoGallery-->
         <scene sceneID="2ZJ-va-NOX">
             <objects>
-                <viewControllerPlaceholder storyboardName="PhotosGallery" id="37V-YZ-sFP" sceneMemberID="viewController">
+                <viewControllerPlaceholder storyboardName="PhotoGallery" id="37V-YZ-sFP" sceneMemberID="viewController">
                     <tabBarItem key="tabBarItem" title="Photo Gallery" image="photo.fill.on.rectangle.fill" catalog="system" id="gvZ-MK-CKy"/>
                 </viewControllerPlaceholder>
                 <placeholder placeholderIdentifier="IBFirstResponder" id="Lxb-nF-jOq" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
