@@ -19,7 +19,7 @@
                                 <rect key="frame" x="0.0" y="88" width="414" height="774"/>
                                 <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                 <prototypes>
-                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="cellWithSubTitle" rowHeight="85" id="efE-no-UGz" customClass="cellWithSubTitle" customModule="UIKit_Basic_Project_1" customModuleProvider="target">
+                                    <tableViewCell clipsSubviews="YES" contentMode="scaleToFill" preservesSuperviewLayoutMargins="YES" selectionStyle="default" indentationWidth="10" reuseIdentifier="cellWithSubTitle" rowHeight="85" id="efE-no-UGz" customClass="CellWithSubTitle" customModule="UIKit_Basic_Project_1" customModuleProvider="target">
                                         <rect key="frame" x="0.0" y="28" width="414" height="85"/>
                                         <autoresizingMask key="autoresizingMask"/>
                                         <tableViewCellContentView key="contentView" opaque="NO" clipsSubviews="YES" multipleTouchEnabled="YES" contentMode="center" preservesSuperviewLayoutMargins="YES" insetsLayoutMarginsFromSafeArea="NO" tableViewCell="efE-no-UGz" id="eEj-kO-Xfm">
@@ -31,15 +31,21 @@
                                                     <fontDescription key="fontDescription" type="boldSystem" pointSize="21"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
+                                                    <userDefinedRuntimeAttributes>
+                                                        <userDefinedRuntimeAttribute type="boolean" keyPath="isSkeletonable" value="YES"/>
+                                                    </userDefinedRuntimeAttributes>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalCompressionResistancePriority="749" text="Label" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="JOp-fM-xLn">
-                                                    <rect key="frame" x="20" y="45" width="32.333333333333343" height="15"/>
+                                                    <rect key="frame" x="19.999999999999996" y="45" width="32.666666666666657" height="16"/>
                                                     <fontDescription key="fontDescription" type="system" weight="light" pointSize="13"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
+                                                    <userDefinedRuntimeAttributes>
+                                                        <userDefinedRuntimeAttribute type="boolean" keyPath="isSkeletonable" value="YES"/>
+                                                    </userDefinedRuntimeAttributes>
                                                 </label>
                                                 <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="Company Name" textAlignment="natural" lineBreakMode="tailTruncation" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="WxL-AI-Qaf">
-                                                    <rect key="frame" x="285.33333333333331" y="57" width="108.66666666666669" height="17"/>
+                                                    <rect key="frame" x="285.66666666666669" y="57" width="108.33333333333331" height="17"/>
                                                     <fontDescription key="fontDescription" type="boldSystem" pointSize="14"/>
                                                     <nil key="textColor"/>
                                                     <nil key="highlightedColor"/>
@@ -53,7 +59,15 @@
                                                 <constraint firstItem="kc3-VS-hfE" firstAttribute="leading" secondItem="eEj-kO-Xfm" secondAttribute="leading" constant="20" symbolic="YES" id="iZF-dA-EcX"/>
                                                 <constraint firstItem="JOp-fM-xLn" firstAttribute="leading" secondItem="kc3-VS-hfE" secondAttribute="leading" id="mBy-PW-N6s"/>
                                             </constraints>
+                                            <userDefinedRuntimeAttributes>
+                                                <userDefinedRuntimeAttribute type="boolean" keyPath="isSkeletonable" value="YES"/>
+                                            </userDefinedRuntimeAttributes>
                                         </tableViewCellContentView>
+                                        <userDefinedRuntimeAttributes>
+                                            <userDefinedRuntimeAttribute type="number" keyPath="skeletonCornerRadius">
+                                                <real key="value" value="0.0"/>
+                                            </userDefinedRuntimeAttribute>
+                                        </userDefinedRuntimeAttributes>
                                         <connections>
                                             <outlet property="companyName" destination="WxL-AI-Qaf" id="Zln-NE-zaC"/>
                                             <outlet property="subtitle" destination="JOp-fM-xLn" id="a4C-Xq-ppz"/>
@@ -62,6 +76,9 @@
                                         </connections>
                                     </tableViewCell>
                                 </prototypes>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="boolean" keyPath="isSkeletonable" value="YES"/>
+                                </userDefinedRuntimeAttributes>
                             </tableView>
                         </subviews>
                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
@@ -113,7 +130,7 @@
                                 <rect key="frame" x="0.0" y="88" width="414" height="774"/>
                                 <subviews>
                                     <view contentMode="scaleToFill" translatesAutoresizingMaskIntoConstraints="NO" id="n0V-wU-V8B">
-                                        <rect key="frame" x="0.0" y="0.0" width="414" height="775"/>
+                                        <rect key="frame" x="0.0" y="0.0" width="414" height="795"/>
                                         <subviews>
                                             <imageView clipsSubviews="YES" userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="person.circle.fill" catalog="system" translatesAutoresizingMaskIntoConstraints="NO" id="LMJ-SB-Gce">
                                                 <rect key="frame" x="132" y="21" width="150" height="148.66666666666669"/>
@@ -262,20 +279,29 @@
                                                 <color key="textColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                                 <nil key="highlightedColor"/>
                                             </label>
+                                            <label opaque="NO" userInteractionEnabled="NO" contentMode="left" horizontalHuggingPriority="251" verticalHuggingPriority="251" text="" textAlignment="natural" lineBreakMode="tailTruncation" numberOfLines="0" baselineAdjustment="alignBaselines" adjustsFontSizeToFit="NO" translatesAutoresizingMaskIntoConstraints="NO" id="14R-Xq-jlL">
+                                                <rect key="frame" x="20" y="775" width="374" height="0.0"/>
+                                                <fontDescription key="fontDescription" type="boldSystem" pointSize="20"/>
+                                                <nil key="textColor"/>
+                                                <nil key="highlightedColor"/>
+                                            </label>
                                         </subviews>
                                         <color key="backgroundColor" systemColor="systemBackgroundColor" cocoaTouchSystemColor="whiteColor"/>
                                         <constraints>
                                             <constraint firstItem="LMJ-SB-Gce" firstAttribute="centerX" secondItem="n0V-wU-V8B" secondAttribute="centerX" id="56b-Fg-cjd"/>
                                             <constraint firstItem="GqE-zT-AA4" firstAttribute="leading" secondItem="n0V-wU-V8B" secondAttribute="leading" constant="20" symbolic="YES" id="6dD-0t-dzR"/>
-                                            <constraint firstAttribute="bottom" secondItem="V5Y-wH-Ke8" secondAttribute="bottom" constant="20" symbolic="YES" id="8dm-67-LXG"/>
                                             <constraint firstItem="LMJ-SB-Gce" firstAttribute="top" secondItem="n0V-wU-V8B" secondAttribute="top" constant="20" symbolic="YES" id="C1M-Jx-Lp5"/>
                                             <constraint firstItem="AYm-ja-w9h" firstAttribute="top" secondItem="LMJ-SB-Gce" secondAttribute="bottom" constant="10" id="GgM-Gi-KWb"/>
+                                            <constraint firstItem="14R-Xq-jlL" firstAttribute="leading" secondItem="n0V-wU-V8B" secondAttribute="leading" constant="20" symbolic="YES" id="H7E-2F-L62"/>
                                             <constraint firstAttribute="trailing" secondItem="V5Y-wH-Ke8" secondAttribute="trailing" constant="20" symbolic="YES" id="IgP-wB-oJB"/>
                                             <constraint firstItem="V5Y-wH-Ke8" firstAttribute="top" secondItem="GqE-zT-AA4" secondAttribute="bottom" constant="25" id="NWx-xZ-2dG"/>
                                             <constraint firstItem="V5Y-wH-Ke8" firstAttribute="leading" secondItem="n0V-wU-V8B" secondAttribute="leading" constant="20" symbolic="YES" id="SFc-AL-MEx"/>
+                                            <constraint firstItem="14R-Xq-jlL" firstAttribute="top" secondItem="V5Y-wH-Ke8" secondAttribute="bottom" constant="20" id="aXQ-6g-f0X"/>
                                             <constraint firstItem="AYm-ja-w9h" firstAttribute="centerX" secondItem="n0V-wU-V8B" secondAttribute="centerX" id="biy-lo-wgv"/>
                                             <constraint firstItem="GqE-zT-AA4" firstAttribute="top" secondItem="AYm-ja-w9h" secondAttribute="bottom" constant="30" id="d6h-Yw-JIw"/>
+                                            <constraint firstAttribute="trailing" secondItem="14R-Xq-jlL" secondAttribute="trailing" constant="20" symbolic="YES" id="m90-f1-wHH"/>
                                             <constraint firstAttribute="trailing" secondItem="GqE-zT-AA4" secondAttribute="trailing" constant="20" symbolic="YES" id="vIY-TA-52F"/>
+                                            <constraint firstAttribute="bottom" secondItem="14R-Xq-jlL" secondAttribute="bottom" constant="20" symbolic="YES" id="yOz-fL-fo3"/>
                                         </constraints>
                                     </view>
                                 </subviews>
@@ -299,13 +325,20 @@
                         </constraints>
                         <viewLayoutGuide key="safeArea" id="fzP-XR-bli"/>
                     </view>
-                    <navigationItem key="navigationItem" title="User Details" id="G5r-sz-paJ"/>
+                    <navigationItem key="navigationItem" title="User Details" id="G5r-sz-paJ">
+                        <barButtonItem key="rightBarButtonItem" image="plus" catalog="system" id="hTv-qq-Ff1">
+                            <connections>
+                                <action selector="saveNoteBarBtnTapped:" destination="5Cm-et-iDM" id="OY9-tr-naQ"/>
+                            </connections>
+                        </barButtonItem>
+                    </navigationItem>
                     <connections>
                         <outlet property="city" destination="4zx-TI-1Br" id="9mX-kH-FH0"/>
                         <outlet property="companyName" destination="tNT-F2-RGx" id="Bu9-Ub-2K5"/>
                         <outlet property="email" destination="gHp-QG-iF3" id="Lr3-y2-aKh"/>
                         <outlet property="fullName" destination="CMO-Jz-2Wi" id="KUf-qy-85n"/>
                         <outlet property="mapView" destination="V5Y-wH-Ke8" id="sMa-75-SIk"/>
+                        <outlet property="note" destination="14R-Xq-jlL" id="tVk-Jy-U6e"/>
                         <outlet property="phone" destination="pE0-WS-ODc" id="IbY-EY-nK4"/>
                         <outlet property="username" destination="AYm-ja-w9h" id="nSy-cB-cso"/>
                         <outlet property="website" destination="0Rp-P5-2Pa" id="IDo-nV-zmM"/>
@@ -340,5 +373,6 @@
         <image name="person.3.fill" catalog="system" width="71" height="34"/>
         <image name="person.circle.fill" catalog="system" width="64" height="60"/>
         <image name="phone" catalog="system" width="64" height="56"/>
+        <image name="plus" catalog="system" width="64" height="56"/>
     </resources>
 </document>

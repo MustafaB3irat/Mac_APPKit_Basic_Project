@@ -45,6 +45,11 @@ class UsersViewController: UIViewController {
         initSearchBarController()
     }
     
+    override func viewDidAppear(_ animated: Bool) {
+        super.viewDidAppear(true)
+        
+        
+    }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         
@@ -103,14 +108,13 @@ extension UsersViewController: UITableViewDelegate {
 
 extension UsersViewController: UITableViewDataSource {
     
-    
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
         return filteredUsers.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        let cell = tableView.dequeueReusableCell(withIdentifier: "cellWithSubTitle", for: indexPath) as? cellWithSubTitle
+        let cell = tableView.dequeueReusableCell(withIdentifier: "cellWithSubTitle", for: indexPath) as? CellWithSubTitle
         
         cell?.title.text = filteredUsers[indexPath.row].username
         cell?.subtitle.text = filteredUsers[indexPath.row].email
@@ -123,6 +127,7 @@ extension UsersViewController: UITableViewDataSource {
             if let companyLabel = cell?.companyName {
                 companyLabel.text = filteredUsers[indexPath.row].company.name
             }
+    
         }
         
         return cell ?? UITableViewCell(style: .subtitle, reuseIdentifier: "cellWithSubTitle")

@@ -81,6 +81,44 @@
             </objects>
             <point key="canvasLocation" x="50.724637681159422" y="75.669642857142847"/>
         </scene>
+        <!--Full Screen Photo View Controller-->
+        <scene sceneID="zUb-hx-eda">
+            <objects>
+                <viewController storyboardIdentifier="fullScreen" id="kQZ-SD-2Fl" customClass="FullScreenPhotoViewController" customModule="UIKit_Basic_Project_1" customModuleProvider="target" sceneMemberID="viewController">
+                    <view key="view" contentMode="scaleToFill" id="q0v-RI-Pwe">
+                        <rect key="frame" x="0.0" y="0.0" width="414" height="896"/>
+                        <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
+                        <subviews>
+                            <imageView clipsSubviews="YES" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="B7x-oP-b8G">
+                                <rect key="frame" x="0.0" y="44" width="414" height="818"/>
+                                <gestureRecognizers/>
+                                <connections>
+                                    <outletCollection property="gestureRecognizers" destination="hYH-7f-13K" appends="YES" id="IEf-Vx-d8n"/>
+                                </connections>
+                            </imageView>
+                        </subviews>
+                        <color key="backgroundColor" white="0.0" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                        <constraints>
+                            <constraint firstItem="aNP-AC-xIk" firstAttribute="bottom" secondItem="B7x-oP-b8G" secondAttribute="bottom" id="0h3-hZ-5dz"/>
+                            <constraint firstItem="B7x-oP-b8G" firstAttribute="top" secondItem="aNP-AC-xIk" secondAttribute="top" id="I0X-WY-Cjy"/>
+                            <constraint firstItem="B7x-oP-b8G" firstAttribute="leading" secondItem="aNP-AC-xIk" secondAttribute="leading" id="ULL-Fc-j4W"/>
+                            <constraint firstItem="aNP-AC-xIk" firstAttribute="trailing" secondItem="B7x-oP-b8G" secondAttribute="trailing" id="VMT-M1-32Q"/>
+                        </constraints>
+                        <viewLayoutGuide key="safeArea" id="aNP-AC-xIk"/>
+                    </view>
+                    <connections>
+                        <outlet property="fullScreenImage" destination="B7x-oP-b8G" id="A4b-sR-Foo"/>
+                    </connections>
+                </viewController>
+                <placeholder placeholderIdentifier="IBFirstResponder" id="T5X-oi-vk3" userLabel="First Responder" customClass="UIResponder" sceneMemberID="firstResponder"/>
+                <tapGestureRecognizer id="hYH-7f-13K">
+                    <connections>
+                        <action selector="dismissView:" destination="kQZ-SD-2Fl" id="73X-qQ-o7W"/>
+                    </connections>
+                </tapGestureRecognizer>
+            </objects>
+            <point key="canvasLocation" x="784" y="76"/>
+        </scene>
     </scenes>
     <resources>
         <image name="photo.fill.on.rectangle.fill" catalog="system" width="64" height="48"/>

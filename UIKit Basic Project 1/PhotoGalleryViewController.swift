@@ -14,7 +14,7 @@ class PhotoGalleryViewController: UIViewController {
         didSet {
             collectionView.register(UINib(nibName: "photoCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: "photoCell")
             collectionView.dataSource = self
-        collectionView.delegate = self
+            collectionView.delegate = self
         }
     }
     
@@ -39,7 +39,6 @@ class PhotoGalleryViewController: UIViewController {
     
     func initPhotosRequest() {
         let photosRequest = PhotosRequest()
-        
         photosRequest.getPhotos() { [weak self] response in
             
             switch response {
@@ -100,7 +99,7 @@ extension PhotoGalleryViewController: UICollectionViewDelegateFlowLayout {
     func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, minimumLineSpacingForSectionAt section: Int) -> CGFloat {
         return 16.0
     }
-
+    
 }
 
 
@@ -111,23 +110,16 @@ extension PhotoGalleryViewController: UICollectionViewDelegate {
         let newImageView = UIImageView()
         guard let album = albums[indexPath.section + 1] else {return}
         newImageView.setNetworkImage(album[indexPath.item].url)
-        newImageView.frame = UIScreen.main.bounds
-        newImageView.backgroundColor = .black
-        newImageView.contentMode = .scaleAspectFit
-        newImageView.isUserInteractionEnabled = true
-        let tap = UITapGestureRecognizer(target: self, action: #selector(dismissFullscreenImage))
-        newImageView.addGestureRecognizer(tap)
-        self.view.addSubview(newImageView)
-        self.navigationController?.isNavigationBarHidden = true
-        self.tabBarController?.tabBar.isHidden = true
+        
+        let vc = storyboard?.instantiateViewController(withIdentifier: "fullScreen") as? FullScreenPhotoViewController
+        vc?.imageURL = album[indexPath.item].url
+        vc?.modalPresentationStyle = UIModalPresentationStyle.overCurrentContext
+        vc?.modalTransitionStyle = UIModalTransitionStyle.crossDissolve
+        guard let fullScreenViewController = vc else {return}
+        self.present(fullScreenViewController, animated: true)
         
     }
     
-    @objc func dismissFullscreenImage(_ sender: UITapGestureRecognizer) {
-        self.navigationController?.isNavigationBarHidden = false
-        self.tabBarController?.tabBar.isHidden = false
-        sender.view?.removeFromSuperview()
-    }
 }
 
 extension UIImageView {
