@@ -20,4 +20,8 @@ class photoCollectionViewCell: UICollectionViewCell {
     photo.image = UIImage(named: name )
   }
   
+    override func prepareForReuse() {
+        super.prepareForReuse()
+        photo.image  = nil
+    }
 }
