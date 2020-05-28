@@ -107,10 +107,7 @@ extension PhotoGalleryViewController: UICollectionViewDelegate {
     
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
         
-        let newImageView = UIImageView()
         guard let album = albums[indexPath.section + 1] else {return}
-        newImageView.setNetworkImage(album[indexPath.item].url)
-        
         let vc = storyboard?.instantiateViewController(withIdentifier: "fullScreen") as? FullScreenPhotoViewController
         vc?.imageURL = album[indexPath.item].url
         vc?.modalPresentationStyle = UIModalPresentationStyle.overCurrentContext

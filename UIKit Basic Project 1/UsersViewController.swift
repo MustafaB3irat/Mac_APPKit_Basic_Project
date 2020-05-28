@@ -45,12 +45,7 @@ class UsersViewController: UIViewController {
         initSearchBarController()
     }
     
-    override func viewDidAppear(_ animated: Bool) {
-        super.viewDidAppear(true)
-        
-        
-    }
-    
+
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         
         if let destination = segue.destination as? UserDetailsViewController {

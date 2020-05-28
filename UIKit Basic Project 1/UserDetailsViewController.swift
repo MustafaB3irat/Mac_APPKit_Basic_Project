@@ -39,7 +39,6 @@ class UserDetailsViewController: UIViewController, MFMailComposeViewControllerDe
     
     
     @IBAction func sendEmail(_ Sender: UILabel) {
-        print("phone clicked!")
         if MFMailComposeViewController.canSendMail(), let recipent = email.text {
             mailComposer.setToRecipients([recipent])
             self.present(mailComposer, animated: true, completion: nil)
