@@ -45,7 +45,7 @@ class UsersViewController: UIViewController {
         initSearchBarController()
     }
     
-
+    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         
         if let destination = segue.destination as? UserDetailsViewController {
@@ -90,12 +90,18 @@ extension UsersViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
         return true
     }
-    
-    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
-        if editingStyle == .delete {
+
+    func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
+        
+        let deleteAction = UIContextualAction(style: .destructive, title: nil) {(_,_, completionHandler) in
             self.filteredUsers.remove(at: indexPath.row)
             self.tableView.reloadData()
+            
+            completionHandler(true)
         }
+        deleteAction.image = UIImage(systemName: "trash")
+        
+        return UISwipeActionsConfiguration(actions: [deleteAction])
     }
     
 }
@@ -122,7 +128,7 @@ extension UsersViewController: UITableViewDataSource {
             if let companyLabel = cell?.companyName {
                 companyLabel.text = filteredUsers[indexPath.row].company.name
             }
-    
+            
         }
         
         return cell ?? UITableViewCell(style: .subtitle, reuseIdentifier: "cellWithSubTitle")
