@@ -50,7 +50,6 @@ class PhotoGalleryViewController: UIViewController {
     
     override func viewWillLayoutSubviews() {
         super.viewWillLayoutSubviews()
-        print("-------------------")
         collectionView.collectionViewLayout.invalidateLayout()
     }
 }
@@ -90,9 +89,8 @@ extension PhotoGalleryViewController: UICollectionViewDataSource {
 }
 
 extension PhotoGalleryViewController: UICollectionViewDelegateFlowLayout {
-    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize {
+    func collectionView(_ collectionView: UICollectionView, layout collectionViewLayout: UICollectionViewLayout, sizeForItemAt indexPath: IndexPath) -> CGSize { 
         let width = floor((self.collectionView.frame.width - 16.0 * 3) / 2)
-        print(width, indexPath)
         return CGSize(width: width, height: width)
     }
 }
