@@ -36,7 +36,6 @@ class UsersViewController: UIViewController {
     }
     
     override func viewDidLoad() {
-        
         super.viewDidLoad()
         activityIndicator.frame = view.bounds
         view.addSubview(activityIndicator)
@@ -47,20 +46,15 @@ class UsersViewController: UIViewController {
     
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        
         if let destination = segue.destination as? UserDetailsViewController {
             destination.user = filteredUsers[(tableView.indexPathForSelectedRow?.row)!]// it's sure that it will be called when a row is selected
         }
-        
     }
     
     
     private func initUsersRequest() {
-        
         let usersRequest = UsersRequest()
-        
         usersRequest.getUsers() { [weak self] result in
-            
             switch result {
             case .failure(let error):
                 print(error)
@@ -68,9 +62,7 @@ class UsersViewController: UIViewController {
                 self?.filteredUsers = users
                 self?.users = users
             }
-            
         }
-        
     }
     
     private func initSearchBarController() {
@@ -90,7 +82,7 @@ extension UsersViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, canEditRowAt indexPath: IndexPath) -> Bool {
         return true
     }
-
+    
     func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
         
         let deleteAction = UIContextualAction(style: .destructive, title: nil) {(_,_, completionHandler) in
@@ -116,10 +108,7 @@ extension UsersViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         let cell = tableView.dequeueReusableCell(withIdentifier: "cellWithSubTitle", for: indexPath) as? CellWithSubTitle
-        
-        cell?.title.text = filteredUsers[indexPath.row].username
-        cell?.subtitle.text = filteredUsers[indexPath.row].email
-        
+        cell?.loadUser(filteredUsers[indexPath.row])
         if indexPath.row % 2 != 0 {
             if let companyLabel = cell?.companyName {
                 companyLabel.removeFromSuperview()

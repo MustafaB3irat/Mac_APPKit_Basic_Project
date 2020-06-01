@@ -8,17 +8,17 @@ class FullScreenPhotoViewController: UIViewController {
     var imageURL: String?
     
     override func viewDidLoad() {
-        fullScreenImage.setNetworkImage(imageURL)
+        fullScreenImage.sd_setImage(with: URL(string: imageURL ?? ""))
         let swipeDown = UISwipeGestureRecognizer(target: self, action: #selector(imageSwipedDown(_:)))
         swipeDown.direction = UISwipeGestureRecognizer.Direction.down
         fullScreenImage.addGestureRecognizer(swipeDown)
     }
-
+    
     @IBAction func dismissView(_ sender: UITapGestureRecognizer) {
         dismiss(animated: true, completion: nil)
     }
     
-   @objc func imageSwipedDown(_ sender: UISwipeGestureRecognizer) {
+    @objc func imageSwipedDown(_ sender: UISwipeGestureRecognizer) {
         dismiss(animated: true, completion: nil)
     }
 }

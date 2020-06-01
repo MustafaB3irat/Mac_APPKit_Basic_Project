@@ -69,11 +69,9 @@ extension PhotoGalleryViewController: UICollectionViewDataSource {
     
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "photoCell", for: indexPath) as? photoCollectionViewCell
         guard let album = albums[indexPath.section + 1] else {return UICollectionViewCell()}
-        cell?.photo.setNetworkImage(album[indexPath.item].thumbnailUrl)
-        
+        cell?.loadImage(album[indexPath.item].thumbnailUrl)
         return cell ?? UICollectionViewCell()
     }
     
@@ -105,26 +103,6 @@ extension PhotoGalleryViewController: UICollectionViewDelegate {
         vc?.modalTransitionStyle = UIModalTransitionStyle.crossDissolve
         guard let fullScreenViewController = vc else {return}
         self.present(fullScreenViewController, animated: true)
-    }
-}
-
-extension UIImageView {
-    func setNetworkImage(_ imgURLString: String?) {
-        guard let imageURLString = imgURLString else {
-            self.image = UIImage(named: "default")
-            return
-        }
-        DispatchQueue.global().async { [weak self] in
-            guard let url = URL(string: imageURLString) else {return}
-            let data = try? Data(contentsOf: url)
-            DispatchQueue.main.async {
-                guard let photoData = data else {
-                    self?.image = UIImage(named: "default")
-                    return
-                }
-                self?.image = UIImage(data: photoData)
-            }
-        }
     }
 }
 
