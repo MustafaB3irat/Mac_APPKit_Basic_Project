@@ -1,5 +1,5 @@
 //
-//  cellWithSubTitle.swift
+//  CellWithSubTitles.swift
 //  UIKit Basic Project 1
 //
 //  Created by Asal Macbook 1 on 19/05/2020.
@@ -8,7 +8,7 @@
 
 import UIKit
 
-class CellWithSubTitle: UITableViewCell {
+class CellWithSubTitles: UITableViewCell {
 
   
   @IBOutlet weak var title: UILabel!
@@ -27,9 +27,15 @@ class CellWithSubTitle: UITableViewCell {
         // Configure the view for the selected state
     }
     
-    func loadUser(_ user: User) {
+    func loadUser(_ user: User, row: Int) {
         title.text = user.username
         subtitle.text = user.email
+        
+        if row % 2 == 0 {
+           companyName.text = user.company.name
+        } else {
+            companyName.text = ""
+        }
     }
     
 }

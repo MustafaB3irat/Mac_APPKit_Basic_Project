@@ -107,20 +107,9 @@ extension UsersViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        let cell = tableView.dequeueReusableCell(withIdentifier: "cellWithSubTitle", for: indexPath) as? CellWithSubTitle
-        cell?.loadUser(filteredUsers[indexPath.row])
-        if indexPath.row % 2 != 0 {
-            if let companyLabel = cell?.companyName {
-                companyLabel.removeFromSuperview()
-            }
-        } else {
-            if let companyLabel = cell?.companyName {
-                companyLabel.text = filteredUsers[indexPath.row].company.name
-            }
-            
-        }
-        
-        return cell ?? UITableViewCell(style: .subtitle, reuseIdentifier: "cellWithSubTitle")
+        let cell = tableView.dequeueReusableCell(withIdentifier: "CellWithSubTitles", for: indexPath) as? CellWithSubTitles
+        cell?.loadUser(filteredUsers[indexPath.row], row: indexPath.row)
+        return cell ?? UITableViewCell(style: .subtitle, reuseIdentifier: "CellWithSubTitles")
     }
     
     func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
