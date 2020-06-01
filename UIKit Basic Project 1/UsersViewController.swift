@@ -36,7 +36,6 @@ class UsersViewController: UIViewController {
     }
     
     override func viewDidLoad() {
-        
         super.viewDidLoad()
         activityIndicator.frame = view.bounds
         view.addSubview(activityIndicator)
@@ -45,22 +44,17 @@ class UsersViewController: UIViewController {
         initSearchBarController()
     }
     
-
+    
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
-        
         if let destination = segue.destination as? UserDetailsViewController {
             destination.user = filteredUsers[(tableView.indexPathForSelectedRow?.row)!]// it's sure that it will be called when a row is selected
         }
-        
     }
     
     
     private func initUsersRequest() {
-        
         let usersRequest = UsersRequest()
-        
         usersRequest.getUsers() { [weak self] result in
-            
             switch result {
             case .failure(let error):
                 print(error)
@@ -68,9 +62,7 @@ class UsersViewController: UIViewController {
                 self?.filteredUsers = users
                 self?.users = users
             }
-            
         }
-        
     }
     
     private func initSearchBarController() {
@@ -91,11 +83,17 @@ extension UsersViewController: UITableViewDelegate {
         return true
     }
     
-    func tableView(_ tableView: UITableView, commit editingStyle: UITableViewCell.EditingStyle, forRowAt indexPath: IndexPath) {
-        if editingStyle == .delete {
+    func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
+        
+        let deleteAction = UIContextualAction(style: .destructive, title: nil) {(_,_, completionHandler) in
             self.filteredUsers.remove(at: indexPath.row)
             self.tableView.reloadData()
+            
+            completionHandler(true)
         }
+        deleteAction.image = UIImage(systemName: "trash")
+        
+        return UISwipeActionsConfiguration(actions: [deleteAction])
     }
     
 }
@@ -110,10 +108,7 @@ extension UsersViewController: UITableViewDataSource {
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         let cell = tableView.dequeueReusableCell(withIdentifier: "cellWithSubTitle", for: indexPath) as? CellWithSubTitle
-        
-        cell?.title.text = filteredUsers[indexPath.row].username
-        cell?.subtitle.text = filteredUsers[indexPath.row].email
-        
+        cell?.loadUser(filteredUsers[indexPath.row])
         if indexPath.row % 2 != 0 {
             if let companyLabel = cell?.companyName {
                 companyLabel.removeFromSuperview()
@@ -122,7 +117,7 @@ extension UsersViewController: UITableViewDataSource {
             if let companyLabel = cell?.companyName {
                 companyLabel.text = filteredUsers[indexPath.row].company.name
             }
-    
+            
         }
         
         return cell ?? UITableViewCell(style: .subtitle, reuseIdentifier: "cellWithSubTitle")
