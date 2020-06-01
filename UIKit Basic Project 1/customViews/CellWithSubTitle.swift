@@ -27,4 +27,9 @@ class CellWithSubTitle: UITableViewCell {
         // Configure the view for the selected state
     }
     
+    func loadUser(_ user: User) {
+        title.text = user.username
+        subtitle.text = user.email
+    }
+    
 }
