@@ -47,7 +47,10 @@ class UsersViewController: UIViewController {
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if let destination = segue.destination as? UserDetailsViewController {
-            destination.user = filteredUsers[(tableView.indexPathForSelectedRow?.row)!]// it's sure that it will be called when a row is selected
+            if let selectedIndex = tableView.indexPathForSelectedRow {
+                let user = filteredUsers[selectedIndex.row]
+                destination.user = user
+            }
         }
     }
     
@@ -66,13 +69,11 @@ class UsersViewController: UIViewController {
     }
     
     private func initSearchBarController() {
-        
         searchController.searchResultsUpdater = self
         searchController.obscuresBackgroundDuringPresentation = false
         searchController.searchBar.placeholder = "Search Users"
         definesPresentationContext = true
         navigationItem.searchController = searchController
-        
     }
     
 }
@@ -88,7 +89,6 @@ extension UsersViewController: UITableViewDelegate {
         let deleteAction = UIContextualAction(style: .destructive, title: nil) {(_,_, completionHandler) in
             self.filteredUsers.remove(at: indexPath.row)
             self.tableView.reloadData()
-            
             completionHandler(true)
         }
         deleteAction.image = UIImage(systemName: "trash")
@@ -109,34 +109,21 @@ extension UsersViewController: UITableViewDataSource {
         
         let cell = tableView.dequeueReusableCell(withIdentifier: "CellWithSubTitles", for: indexPath) as? CellWithSubTitles
         cell?.loadUser(filteredUsers[indexPath.row], row: indexPath.row)
-        return cell ?? UITableViewCell(style: .subtitle, reuseIdentifier: "CellWithSubTitles")
+        return cell ?? UITableViewCell()
     }
-    
-    func tableView(_ tableView: UITableView, heightForRowAt indexPath: IndexPath) -> CGFloat {
-        
-        if indexPath.row % 2 != 0 {
-            return 70.0
-        }
-        
-        return 85.0
-    }
-    
 }
 
 extension UsersViewController: UISearchResultsUpdating {
-    
     func updateSearchResults(for searchController: UISearchController) {
         
         guard let username  = searchController.searchBar.text else {
             filteredUsers = users
             return
         }
-        
         if username == "" {
             filteredUsers = users
             return
         }
-        
         self.filteredUsers = users.filter({$0.username.lowercased().hasPrefix(username.lowercased())})
     }
 }

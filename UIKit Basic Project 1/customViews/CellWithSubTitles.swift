@@ -32,9 +32,11 @@ class CellWithSubTitles: UITableViewCell {
         subtitle.text = user.email
         
         if row % 2 == 0 {
+            companyName.isHidden = false
            companyName.text = user.company.name
         } else {
             companyName.text = ""
+            companyName.isHidden = true
         }
     }
     
