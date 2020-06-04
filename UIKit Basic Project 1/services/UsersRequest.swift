@@ -5,10 +5,10 @@ enum UserError: Error {
     case noAvailableUsers, invalidRequest
 }
 
-struct UsersRequest {
+class UsersRequest {
     
     var apiURL: URL
-    private let RESOURCE_URL = "https://jsonplaceholder.typicode.com/users"
+    private let RESOURCE_URL = APIs.usersURL
     
     init() {
         guard let apiURL = URL(string: RESOURCE_URL) else {fatalError()}

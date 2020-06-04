@@ -12,7 +12,7 @@ class PhotoGalleryViewController: UIViewController {
     
     @IBOutlet var collectionView: UICollectionView! {
         didSet {
-            collectionView.register(UINib(nibName: "photoCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: "photoCell")
+            collectionView.register(UINib(nibName: "PhotoCollectionViewCell", bundle: nil), forCellWithReuseIdentifier: "photoCell")
             collectionView.dataSource = self
             collectionView.delegate = self
         }
@@ -69,7 +69,7 @@ extension PhotoGalleryViewController: UICollectionViewDataSource {
     
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
-        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "photoCell", for: indexPath) as? photoCollectionViewCell
+        let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "photoCell", for: indexPath) as? PhotoCollectionViewCell
         guard let album = albums[indexPath.section + 1] else {return UICollectionViewCell()}
         cell?.loadImage(album[indexPath.item].thumbnailUrl)
         return cell ?? UICollectionViewCell()
@@ -80,7 +80,7 @@ extension PhotoGalleryViewController: UICollectionViewDataSource {
         
         let albumHeader = collectionView.dequeueReusableSupplementaryView(ofKind: kind, withReuseIdentifier: "albumHeader", for: indexPath) as? AlbumHeader
         
-        albumHeader?.albumId.text = "\(indexPath.section + 1)"
+        albumHeader?.albumIdText = "\(indexPath.section + 1)"
         return albumHeader ?? AlbumHeader()
     }
     

@@ -7,7 +7,6 @@ target 'UIKit Basic Project 1' do
 
   # Pods for UIKit Basic Project 1
 pod 'Alamofire'
-pod 'SkeletonView'
 platform :ios, '8.0'
 pod 'SDWebImage', '~> 5.0'
 
