@@ -19,6 +19,7 @@
 		C75D526D2487A2B900514BA4 /* config.swift in Sources */ = {isa = PBXBuildFile; fileRef = C75D526C2487A2B900514BA4 /* config.swift */; };
 		C75D52732488EDED00514BA4 /* Note+CoreDataClass.swift in Sources */ = {isa = PBXBuildFile; fileRef = C75D52712488EDED00514BA4 /* Note+CoreDataClass.swift */; };
 		C75D52742488EDED00514BA4 /* Note+CoreDataProperties.swift in Sources */ = {isa = PBXBuildFile; fileRef = C75D52722488EDED00514BA4 /* Note+CoreDataProperties.swift */; };
+		C75D5276248CFC4500514BA4 /* UsersViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C75D5275248CFC4500514BA4 /* UsersViewModel.swift */; };
 		C75DBBBA24734729004FB0E8 /* UserDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C75DBBB924734729004FB0E8 /* UserDetailsViewController.swift */; };
 		C760BF3124789B3400A84917 /* PhotoGallery.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C760BF3024789B3400A84917 /* PhotoGallery.storyboard */; };
 		C7A1411B2475FD1500417B4B /* Photo.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7A1411A2475FD1500417B4B /* Photo.swift */; };
@@ -29,6 +30,8 @@
 		C7DD9A16247478BF000243E3 /* UsersRequest.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7DD9A15247478BF000243E3 /* UsersRequest.swift */; };
 		C7DF902B247313D900DD25F3 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7DF902A247313D900DD25F3 /* User.swift */; };
 		C7DF90332473441100DD25F3 /* UsersCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7DF90312473441100DD25F3 /* UsersCell.swift */; };
+		C7EA19C7248D078500DA8632 /* UserDetailsViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7EA19C6248D078500DA8632 /* UserDetailsViewModel.swift */; };
+		C7EA19C9248D0EF000DA8632 /* PhotoViewModel.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7EA19C8248D0EF000DA8632 /* PhotoViewModel.swift */; };
 		C7F40F132472DDB500B2D7F1 /* PhotoGalleryViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = C7F40F122472DDB500B2D7F1 /* PhotoGalleryViewController.swift */; };
 		C7F40F162472FF5100B2D7F1 /* Profiles.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = C7F40F152472FF5100B2D7F1 /* Profiles.storyboard */; };
 /* End PBXBuildFile section */
@@ -49,6 +52,7 @@
 		C75D526C2487A2B900514BA4 /* config.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = config.swift; sourceTree = "<group>"; };
 		C75D52712488EDED00514BA4 /* Note+CoreDataClass.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Note+CoreDataClass.swift"; sourceTree = SOURCE_ROOT; };
 		C75D52722488EDED00514BA4 /* Note+CoreDataProperties.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = "Note+CoreDataProperties.swift"; sourceTree = SOURCE_ROOT; };
+		C75D5275248CFC4500514BA4 /* UsersViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UsersViewModel.swift; sourceTree = "<group>"; };
 		C75DBBB924734729004FB0E8 /* UserDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDetailsViewController.swift; sourceTree = "<group>"; };
 		C760BF3024789B3400A84917 /* PhotoGallery.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = PhotoGallery.storyboard; sourceTree = "<group>"; };
 		C7A1411A2475FD1500417B4B /* Photo.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Photo.swift; sourceTree = "<group>"; };
@@ -59,6 +63,8 @@
 		C7DD9A15247478BF000243E3 /* UsersRequest.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UsersRequest.swift; sourceTree = "<group>"; };
 		C7DF902A247313D900DD25F3 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		C7DF90312473441100DD25F3 /* UsersCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UsersCell.swift; sourceTree = "<group>"; };
+		C7EA19C6248D078500DA8632 /* UserDetailsViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserDetailsViewModel.swift; sourceTree = "<group>"; };
+		C7EA19C8248D0EF000DA8632 /* PhotoViewModel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoViewModel.swift; sourceTree = "<group>"; };
 		C7F40F122472DDB500B2D7F1 /* PhotoGalleryViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PhotoGalleryViewController.swift; sourceTree = "<group>"; };
 		C7F40F152472FF5100B2D7F1 /* Profiles.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Profiles.storyboard; sourceTree = "<group>"; };
 		E610A4B0D0538B06586E3607 /* Pods_UIKit_Basic_Project_1.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_UIKit_Basic_Project_1.framework; sourceTree = BUILT_PRODUCTS_DIR; };
@@ -145,6 +151,8 @@
 				C712D1622471B3AF0049AC4C /* UsersViewController.swift */,
 				C75DBBB924734729004FB0E8 /* UserDetailsViewController.swift */,
 				C7F40F152472FF5100B2D7F1 /* Profiles.storyboard */,
+				C75D5275248CFC4500514BA4 /* UsersViewModel.swift */,
+				C7EA19C6248D078500DA8632 /* UserDetailsViewModel.swift */,
 			);
 			path = users;
 			sourceTree = "<group>";
@@ -155,6 +163,7 @@
 				C7F40F122472DDB500B2D7F1 /* PhotoGalleryViewController.swift */,
 				C7537C2A247EA2720013F842 /* FullScreenPhotoViewController.swift */,
 				C760BF3024789B3400A84917 /* PhotoGallery.storyboard */,
+				C7EA19C8248D0EF000DA8632 /* PhotoViewModel.swift */,
 			);
 			path = photogallery;
 			sourceTree = "<group>";
@@ -339,10 +348,13 @@
 				C712D15F2471B3AF0049AC4C /* AppDelegate.swift in Sources */,
 				C7DF902B247313D900DD25F3 /* User.swift in Sources */,
 				C712D1612471B3AF0049AC4C /* SceneDelegate.swift in Sources */,
+				C75D5276248CFC4500514BA4 /* UsersViewModel.swift in Sources */,
 				C712D1692471B3AF0049AC4C /* UIKit_Basic_Project_1.xcdatamodeld in Sources */,
+				C7EA19C9248D0EF000DA8632 /* PhotoViewModel.swift in Sources */,
 				C7A1411B2475FD1500417B4B /* Photo.swift in Sources */,
 				C7A141212476C3D400417B4B /* AlbumHeader.swift in Sources */,
 				C75D52742488EDED00514BA4 /* Note+CoreDataProperties.swift in Sources */,
+				C7EA19C7248D078500DA8632 /* UserDetailsViewModel.swift in Sources */,
 				C7A1411D2475FD7100417B4B /* PhotosRequest.swift in Sources */,
 				C75DBBBA24734729004FB0E8 /* UserDetailsViewController.swift in Sources */,
 				C7DD9A16247478BF000243E3 /* UsersRequest.swift in Sources */,

@@ -22,8 +22,8 @@ class UsersViewController: UIViewController {
     
     
     private let searchController = UISearchController(searchResultsController: nil)
-    private var users: [User] = []
-    private var filteredUsers: [User] = []
+    private var usersViewModel: UsersViewModel = UsersViewModel()
+    
     override func viewDidLoad() {
         super.viewDidLoad()
         activityIndicator.frame = view.bounds
@@ -37,7 +37,7 @@ class UsersViewController: UIViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if let destination = segue.destination as? UserDetailsViewController {
             if let selectedIndex = tableView.indexPathForSelectedRow {
-                let user = filteredUsers[selectedIndex.row]
+                let user = self.usersViewModel.filteredUsers[selectedIndex.row]
                 destination.user = user
             }
         }
@@ -45,19 +45,11 @@ class UsersViewController: UIViewController {
     
     
     private func fetchUsers() {
-        let usersRequest = UsersRequest()
-        usersRequest.getUsers() { [weak self] result in
-            switch result {
-            case .failure(let error):
-                print(error)
-            case .success(let users):
-                self?.filteredUsers = users
-                self?.users = users
-                DispatchQueue.main.async {[weak self] in
-                    self?.tableView.reloadData()
-                    self?.activityIndicator.stopAnimating()
-                    self?.activityIndicator.removeFromSuperview()
-                }
+        usersViewModel.fetchUsers { [weak self] users in
+            DispatchQueue.main.async {[weak self] in
+                self?.tableView.reloadData()
+                self?.activityIndicator.stopAnimating()
+                self?.activityIndicator.removeFromSuperview()
             }
         }
     }
@@ -81,7 +73,8 @@ extension UsersViewController: UITableViewDelegate {
     func tableView(_ tableView: UITableView, trailingSwipeActionsConfigurationForRowAt indexPath: IndexPath) -> UISwipeActionsConfiguration? {
         
         let deleteAction = UIContextualAction(style: .destructive, title: nil) {(_,_, completionHandler) in
-            self.filteredUsers.remove(at: indexPath.row)
+            self.usersViewModel.filteredUsers.remove(at: indexPath.row)
+            self.tableView.reloadData()
             completionHandler(true)
         }
         deleteAction.image = UIImage(systemName: "trash")
@@ -95,24 +88,19 @@ extension UsersViewController: UITableViewDelegate {
 extension UsersViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, numberOfRowsInSection section: Int) -> Int {
-        return filteredUsers.count
+        return usersViewModel.filteredUsers.count
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
         let cell = tableView.dequeueReusableCell(withIdentifier: "UsersCell", for: indexPath) as? UsersCell
-        cell?.user = filteredUsers[indexPath.row]
+        cell?.user = self.usersViewModel.filteredUsers[indexPath.row]
         return cell ?? UITableViewCell()
     }
 }
 
 extension UsersViewController: UISearchResultsUpdating {
     func updateSearchResults(for searchController: UISearchController) {
-        
-        guard let username  = searchController.searchBar.text, username.isEmpty else {
-            filteredUsers = users
-            return
-        }
-        self.filteredUsers = users.filter({$0.username.lowercased().hasPrefix(username.lowercased())})
+        self.usersViewModel.filterUsers(username: searchController.searchBar.text)
     }
 }

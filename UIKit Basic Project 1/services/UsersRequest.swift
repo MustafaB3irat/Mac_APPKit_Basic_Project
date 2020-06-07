@@ -15,7 +15,7 @@ class UsersRequest {
         self.apiURL = apiURL
     }
     
-    func getUsers(completion: @escaping (Result<[User], UserError>) -> Void) {
+    func fetchUsers(completion: @escaping (Result<[User], UserError>) -> Void) {
         let dataTask = URLSession.shared.dataTask(with: apiURL) { data, _, _ in
             guard let jsonData = data else {
                 completion(.failure(.noAvailableUsers))

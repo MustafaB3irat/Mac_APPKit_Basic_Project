@@ -20,13 +20,7 @@ class PhotoGalleryViewController: UIViewController {
     
     var activityIndicator = UIActivityIndicatorView(style: .large)
     
-    private var albums: [Int: [Photo]]  = [:] {
-        didSet {
-            collectionView.reloadData()
-            activityIndicator.stopAnimating()
-            activityIndicator.removeFromSuperview()
-        }
-    }
+    private var photosViewModel = PhotoViewModel()
     
     override func viewDidLoad() {
         super.viewDidLoad()
@@ -37,13 +31,13 @@ class PhotoGalleryViewController: UIViewController {
     }
     
     func initPhotosRequest() {
-        let photosRequest = PhotosRequest()
-        photosRequest.getPhotos() { [weak self] response in
-            switch response {
-            case .failure(let error):
-                print(error)
-            case .success(let albums):
-                self?.albums = albums
+        photosViewModel.fetchPhotos { [weak self] success in
+            if success {
+                DispatchQueue.main.async {[weak self] in
+                    self?.collectionView.reloadData()
+                    self?.activityIndicator.stopAnimating()
+                    self?.activityIndicator.removeFromSuperview()
+                }
             }
         }
     }
@@ -59,18 +53,18 @@ class PhotoGalleryViewController: UIViewController {
 extension PhotoGalleryViewController: UICollectionViewDataSource {
     
     func numberOfSections(in collectionView: UICollectionView) -> Int {
-        return albums.count
+        return photosViewModel.albums.count
     }
     
     
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
-        return albums[section + 1]?.count ?? 0
+        return photosViewModel.albums[section + 1]?.count ?? 0
     }
     
     
     func collectionView(_ collectionView: UICollectionView, cellForItemAt indexPath: IndexPath) -> UICollectionViewCell {
         let cell = collectionView.dequeueReusableCell(withReuseIdentifier: "photoCell", for: indexPath) as? PhotoCollectionViewCell
-        guard let album = albums[indexPath.section + 1] else {return UICollectionViewCell()}
+        guard let album = photosViewModel.albums[indexPath.section + 1] else {return UICollectionViewCell()}
         cell?.loadImage(album[indexPath.item].thumbnailUrl)
         return cell ?? UICollectionViewCell()
     }
@@ -96,7 +90,7 @@ extension PhotoGalleryViewController: UICollectionViewDelegateFlowLayout {
 
 extension PhotoGalleryViewController: UICollectionViewDelegate {
     func collectionView(_ collectionView: UICollectionView, didSelectItemAt indexPath: IndexPath) {
-        guard let album = albums[indexPath.section + 1] else {return}
+        guard let album = photosViewModel.albums[indexPath.section + 1] else {return}
         let vc = storyboard?.instantiateViewController(withIdentifier: "fullScreen") as? FullScreenPhotoViewController
         vc?.imageURL = album[indexPath.item].url
         vc?.modalPresentationStyle = UIModalPresentationStyle.overCurrentContext
