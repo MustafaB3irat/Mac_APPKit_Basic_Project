@@ -9,14 +9,9 @@
 import UIKit
 import SDWebImage
 
-class photoCollectionViewCell: UICollectionViewCell {
+class PhotoCollectionViewCell: UICollectionViewCell {
 
-  @IBOutlet weak var photo: UIImageView!
-    var photoUrl: String = ""
-  
-    override func awakeFromNib() {
-        super.awakeFromNib()
-    }
+  @IBOutlet private weak var photo: UIImageView!
 
     func loadImage(_ url: String) {
         photo.sd_setImage(with: URL(string: url), placeholderImage: UIImage(named: "default"))

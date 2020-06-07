@@ -18,29 +18,18 @@ class UsersViewController: UIViewController {
             tableView.delegate = self
         }
     }
-    
     var activityIndicator = UIActivityIndicatorView(style: .large)
     
     
     private let searchController = UISearchController(searchResultsController: nil)
     private var users: [User] = []
-    private var filteredUsers: [User] = [] {
-        
-        didSet {
-            DispatchQueue.main.async { [weak self] in
-                self?.tableView.reloadData()
-                self?.activityIndicator.stopAnimating()
-                self?.activityIndicator.removeFromSuperview()
-            }
-        }
-    }
-    
+    private var filteredUsers: [User] = []
     override func viewDidLoad() {
         super.viewDidLoad()
         activityIndicator.frame = view.bounds
         view.addSubview(activityIndicator)
         activityIndicator.startAnimating()
-        initUsersRequest()
+        fetchUsers()
         initSearchBarController()
     }
     
@@ -55,7 +44,7 @@ class UsersViewController: UIViewController {
     }
     
     
-    private func initUsersRequest() {
+    private func fetchUsers() {
         let usersRequest = UsersRequest()
         usersRequest.getUsers() { [weak self] result in
             switch result {
@@ -64,6 +53,11 @@ class UsersViewController: UIViewController {
             case .success(let users):
                 self?.filteredUsers = users
                 self?.users = users
+                DispatchQueue.main.async {[weak self] in
+                    self?.tableView.reloadData()
+                    self?.activityIndicator.stopAnimating()
+                    self?.activityIndicator.removeFromSuperview()
+                }
             }
         }
     }
@@ -88,7 +82,6 @@ extension UsersViewController: UITableViewDelegate {
         
         let deleteAction = UIContextualAction(style: .destructive, title: nil) {(_,_, completionHandler) in
             self.filteredUsers.remove(at: indexPath.row)
-            self.tableView.reloadData()
             completionHandler(true)
         }
         deleteAction.image = UIImage(systemName: "trash")
@@ -107,8 +100,8 @@ extension UsersViewController: UITableViewDataSource {
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        let cell = tableView.dequeueReusableCell(withIdentifier: "CellWithSubTitles", for: indexPath) as? CellWithSubTitles
-        cell?.loadUser(filteredUsers[indexPath.row], row: indexPath.row)
+        let cell = tableView.dequeueReusableCell(withIdentifier: "UsersCell", for: indexPath) as? UsersCell
+        cell?.user = filteredUsers[indexPath.row]
         return cell ?? UITableViewCell()
     }
 }
@@ -116,11 +109,7 @@ extension UsersViewController: UITableViewDataSource {
 extension UsersViewController: UISearchResultsUpdating {
     func updateSearchResults(for searchController: UISearchController) {
         
-        guard let username  = searchController.searchBar.text else {
-            filteredUsers = users
-            return
-        }
-        if username == "" {
+        guard let username  = searchController.searchBar.text, username.isEmpty else {
             filteredUsers = users
             return
         }

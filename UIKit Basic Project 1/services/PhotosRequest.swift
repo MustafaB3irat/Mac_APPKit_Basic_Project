@@ -5,13 +5,13 @@ enum PhotoError: Error {
     case photosNotFound, invalidRequest
 }
 
-struct PhotosRequest {
+class PhotosRequest {
     
     var apiURL: String
     
     
     init() {
-        apiURL = "https://jsonplaceholder.typicode.com/photos"
+        apiURL = APIs.photoURL
     }
     
     func getPhotos(completion: @escaping (Result<[Int: [Photo]], PhotoError>) -> Void) {

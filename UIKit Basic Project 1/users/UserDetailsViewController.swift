@@ -87,7 +87,7 @@ class UserDetailsViewController: UIViewController, MFMailComposeViewControllerDe
         alert.addAction(saveAction)
         alert.addAction(cancelAction)
         alert.addTextField()
-        alert.textFields?.first?.text = getNote()?.value(forKeyPath: "content") as? String
+        alert.textFields?.first?.text = getNote()?.content
         present(alert, animated: true)
     }
     
@@ -102,14 +102,12 @@ class UserDetailsViewController: UIViewController, MFMailComposeViewControllerDe
         
         if userDefaults.bool(forKey: "\(userId)") {
             
-            getNote()?.setValue(noteStr, forKey: "content")
+            getNote()?.content = noteStr
             
         } else {
-            
-            let note = NSManagedObject(entity: entity, insertInto: context)
-            note.setValue(noteStr, forKey: "content")
-            note.setValue(Int16(userId), forKey: "user_id")
-            
+            let note = Note(entity: entity, insertInto: context)
+            note.content = noteStr
+            note.user_id = Int16(userId)
         }
         
         do {
@@ -170,7 +168,7 @@ class UserDetailsViewController: UIViewController, MFMailComposeViewControllerDe
         }
     }
     
-    private func getNote() -> NSManagedObject? {
+    private func getNote() -> Note? {
         
         do {
             guard let userId = user?.id else {return nil}
@@ -179,7 +177,7 @@ class UserDetailsViewController: UIViewController, MFMailComposeViewControllerDe
             
             let context = appDelegate.persistentContainer.viewContext
             
-            let fetchRequest = NSFetchRequest<NSManagedObject>(entityName: "Note")
+            let fetchRequest: NSFetchRequest<Note> = Note.fetchRequest()
             fetchRequest.predicate = NSPredicate(format: "user_id == %@", NSNumber(value: Int16(userId)))
             
             let notes = try context.fetch(fetchRequest)

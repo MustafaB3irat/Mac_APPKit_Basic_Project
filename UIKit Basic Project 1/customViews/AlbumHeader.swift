@@ -9,6 +9,10 @@
 import UIKit
 
 class AlbumHeader: UICollectionReusableView {
-        
-    @IBOutlet weak var albumId: UILabel!
+    @IBOutlet private weak var albumId: UILabel!
+    var albumIdText: String = "" {
+        didSet {
+            self.albumId.text = albumIdText
+        }
+    }
 }
