@@ -74,7 +74,7 @@ extension UsersViewController: UITableViewDelegate {
         
         let deleteAction = UIContextualAction(style: .destructive, title: nil) {(_,_, completionHandler) in
             self.usersViewModel.filteredUsers.remove(at: indexPath.row)
-            self.tableView.reloadData()
+            self.tableView.deleteRows(at: [indexPath], with: .fade)
             completionHandler(true)
         }
         deleteAction.image = UIImage(systemName: "trash")
