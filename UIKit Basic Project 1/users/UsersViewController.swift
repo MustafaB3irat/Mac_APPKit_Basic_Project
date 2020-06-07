@@ -22,7 +22,7 @@ class UsersViewController: UIViewController {
     
     
     private let searchController = UISearchController(searchResultsController: nil)
-    private var usersViewModel: UsersViewModel = UsersViewModel()
+    private var usersViewModel: UsersViewModel = UsersViewModel(usersRequest: ApiUsersRequest())
     
     override func viewDidLoad() {
         super.viewDidLoad()

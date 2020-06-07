@@ -14,8 +14,8 @@ class UsersViewModel {
     private var users: [User]
     private var usersRequest: UsersRequest
     
-    init() {
-        usersRequest = UsersRequest()
+    init(usersRequest: UsersRequest) {
+        self.usersRequest = usersRequest
         users = []
         filteredUsers = []
     }

@@ -13,9 +13,9 @@ class PhotoViewModel {
     var albums: [Int: [Photo]]
     var photosRequest: PhotosRequest
     
-    init() {
+    init(photosRequest: PhotosRequest) {
         albums = [:]
-        photosRequest = PhotosRequest()
+        self.photosRequest = photosRequest
     }
     
     func fetchPhotos(completion: @escaping (Bool) -> Void) {

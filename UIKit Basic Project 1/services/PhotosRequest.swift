@@ -4,11 +4,12 @@ import Alamofire
 enum PhotoError: Error {
     case photosNotFound, invalidRequest
 }
-
-class PhotosRequest {
+protocol PhotosRequest {
+      func getPhotos(completion: @escaping (Result<[Photo], PhotoError>) -> Void)
+}
+class ApiPhotosRequest: PhotosRequest {
     
     var apiURL: String
-    
     
     init() {
         apiURL = APIs.photoURL

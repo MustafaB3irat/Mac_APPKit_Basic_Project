@@ -20,7 +20,7 @@ class PhotoGalleryViewController: UIViewController {
     
     var activityIndicator = UIActivityIndicatorView(style: .large)
     
-    private var photosViewModel = PhotoViewModel()
+    private var photosViewModel = PhotoViewModel(photosRequest: ApiPhotosRequest())
     
     override func viewDidLoad() {
         super.viewDidLoad()

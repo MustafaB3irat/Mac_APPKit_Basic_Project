@@ -5,7 +5,11 @@ enum UserError: Error {
     case noAvailableUsers, invalidRequest
 }
 
-class UsersRequest {
+protocol UsersRequest {
+     func fetchUsers(completion: @escaping (Result<[User], UserError>) -> Void)
+}
+
+class ApiUsersRequest: UsersRequest {
     
     var apiURL: URL
     private let RESOURCE_URL = APIs.usersURL
