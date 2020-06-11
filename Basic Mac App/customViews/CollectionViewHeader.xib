@@ -1,0 +1,50 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<document type="com.apple.InterfaceBuilder3.Cocoa.XIB" version="3.0" toolsVersion="15705" targetRuntime="MacOSX.Cocoa" propertyAccessControl="none" useAutolayout="YES" customObjectInstantitationMethod="direct">
+    <dependencies>
+        <plugIn identifier="com.apple.InterfaceBuilder.CocoaPlugin" version="15705"/>
+        <capability name="documents saved in the Xcode 8 format" minToolsVersion="8.0"/>
+    </dependencies>
+    <objects>
+        <customObject id="-2" userLabel="File's Owner"/>
+        <customObject id="-1" userLabel="First Responder" customClass="FirstResponder"/>
+        <customObject id="-3" userLabel="Application" customClass="NSObject"/>
+        <customView identifier="CollectionViewHeader" id="c22-O7-iKe" customClass="CollectionViewHeader" customModule="Basic_Mac_App" customModuleProvider="target">
+            <rect key="frame" x="0.0" y="0.0" width="480" height="70"/>
+            <autoresizingMask key="autoresizingMask" flexibleMaxX="YES" flexibleMinY="YES"/>
+            <subviews>
+                <imageView horizontalHuggingPriority="251" verticalHuggingPriority="251" translatesAutoresizingMaskIntoConstraints="NO" id="ZMA-yk-mcK">
+                    <rect key="frame" x="20" y="20" width="30" height="30"/>
+                    <constraints>
+                        <constraint firstAttribute="height" constant="30" id="1TK-iG-VG5"/>
+                        <constraint firstAttribute="width" constant="30" id="okU-p7-D64"/>
+                    </constraints>
+                    <imageCell key="cell" refusesFirstResponder="YES" alignment="left" imageScaling="axesIndependently" image="NSIconViewTemplate" id="maW-6v-IKo"/>
+                </imageView>
+                <textField horizontalHuggingPriority="251" verticalHuggingPriority="750" translatesAutoresizingMaskIntoConstraints="NO" id="Ygx-l0-wOp">
+                    <rect key="frame" x="56" y="20" width="406" height="30"/>
+                    <textFieldCell key="cell" lineBreakMode="clipping" title="Album ID" id="VwY-GO-DZt">
+                        <font key="font" metaFont="system" size="25"/>
+                        <color key="textColor" name="labelColor" catalog="System" colorSpace="catalog"/>
+                        <color key="backgroundColor" name="textBackgroundColor" catalog="System" colorSpace="catalog"/>
+                    </textFieldCell>
+                </textField>
+            </subviews>
+            <constraints>
+                <constraint firstAttribute="bottom" secondItem="ZMA-yk-mcK" secondAttribute="bottom" constant="20" symbolic="YES" id="Gdv-jT-Jgf"/>
+                <constraint firstItem="ZMA-yk-mcK" firstAttribute="top" secondItem="c22-O7-iKe" secondAttribute="top" constant="20" symbolic="YES" id="IPq-4v-bMF"/>
+                <constraint firstItem="Ygx-l0-wOp" firstAttribute="leading" secondItem="ZMA-yk-mcK" secondAttribute="trailing" constant="8" symbolic="YES" id="Icj-hx-zHU"/>
+                <constraint firstItem="ZMA-yk-mcK" firstAttribute="leading" secondItem="c22-O7-iKe" secondAttribute="leading" constant="20" symbolic="YES" id="M6B-Fv-pNY"/>
+                <constraint firstItem="Ygx-l0-wOp" firstAttribute="top" secondItem="c22-O7-iKe" secondAttribute="top" constant="20" symbolic="YES" id="ZDk-sf-ESC"/>
+                <constraint firstAttribute="trailing" secondItem="Ygx-l0-wOp" secondAttribute="trailing" constant="20" symbolic="YES" id="svE-Cl-6aO"/>
+                <constraint firstAttribute="bottom" secondItem="Ygx-l0-wOp" secondAttribute="bottom" constant="20" symbolic="YES" id="uzh-c1-EN4"/>
+            </constraints>
+            <connections>
+                <outlet property="albumId" destination="Ygx-l0-wOp" id="ihr-Qd-CW9"/>
+            </connections>
+            <point key="canvasLocation" x="139" y="154"/>
+        </customView>
+    </objects>
+    <resources>
+        <image name="NSIconViewTemplate" width="14" height="10"/>
+    </resources>
+</document>
