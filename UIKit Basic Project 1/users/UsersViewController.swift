@@ -102,5 +102,6 @@ extension UsersViewController: UITableViewDataSource {
 extension UsersViewController: UISearchResultsUpdating {
     func updateSearchResults(for searchController: UISearchController) {
         self.usersViewModel.filterUsers(username: searchController.searchBar.text)
+        self.tableView.reloadData()
     }
 }

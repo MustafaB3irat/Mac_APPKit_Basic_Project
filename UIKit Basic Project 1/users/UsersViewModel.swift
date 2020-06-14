@@ -39,7 +39,6 @@ class UsersViewModel {
             return
         }
         filteredUsers =  users.filter({$0.username.lowercased().hasPrefix(username.lowercased())})
+        print(filteredUsers.count)
     }
-    
-    
 }
